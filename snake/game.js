@@ -8,12 +8,15 @@ const width = Math.floor(window.innerWidth / pixelSize), height = Math.floor(win
 
 let screenPoint = [-10, 0, 0, 0];
 
-const adress = "https://ideal-disco-wr7pjrr654jr367q-8888.app.github.dev/";
+const adress = "https://ideal-disco-wr7pjrr654jr367q-8888.app.github.dev/test";
 
 function setToBackend(mes = "") {
 	fetch(adress, {
 		method: "POST",
 		body: mes,
+		headers: {
+			"Content-type": "application/json",
+		}
 	});
 }
 
