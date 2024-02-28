@@ -17,6 +17,8 @@ function setToBackend(mes = "") {
 	});
 }
 
+setToBackend("wiadomość");
+
 let apple = { x: 0, y: 0 }
 let direction = "D", l = [3, 3];
 let snakeX = [5, 6, 7];
