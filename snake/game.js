@@ -11,7 +11,7 @@ let screenPoint = [-10, 0, 0, 0];
 const adress = "https://ideal-disco-wr7pjrr654jr367q-8888.app.github.dev/test";
 
 function setToBackend(mes) {
-	return fetch(address, {
+	return fetch(adress, {
 			method: "POST",
 			body: JSON.stringify(mes),
 			headers: {
