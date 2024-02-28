@@ -8,6 +8,15 @@ const width = Math.floor(window.innerWidth / pixelSize), height = Math.floor(win
 
 let screenPoint = [-10, 0, 0, 0];
 
+const adress = "https://ideal-disco-wr7pjrr654jr367q-8888.app.github.dev/";
+
+function setToBackend(mes = "") {
+	fetch(adress, {
+		method: "POST",
+		body: mes,
+	});
+}
+
 let apple = { x: 0, y: 0 }
 let direction = "D", l = [3, 3];
 let snakeX = [5, 6, 7];
