@@ -20,7 +20,22 @@ function setToBackend(mes) {
 	});
 }
 
-setToBackend("wiadomość");
+setToBackend("wiadomość")
+.then(response => {
+		// Obsługa poprawnej odpowiedzi
+		if (!response.ok) {
+				throw new Error(`HTTP error! Status: ${response.status}`);
+		}
+		return response.json();
+})
+.then(data => {
+		// Obsługa danych z odpowiedzi
+		console.log(data);
+})
+.catch(error => {
+		// Obsługa błędów
+		console.error("Błąd fetch:", error);
+});
 
 let apple = { x: 0, y: 0 }
 let direction = "D", l = [3, 3];
