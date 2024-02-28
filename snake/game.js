@@ -11,31 +11,31 @@ let screenPoint = [-10, 0, 0, 0];
 const adress = "https://ideal-disco-wr7pjrr654jr367q-8888.app.github.dev/test";
 
 function setToBackend(mes) {
-	fetch(adress, {
-		method: "POST",
-		body: JSON.stringify(mes),
-		headers: {
-			"Content-type": "application/json",
-		}
+	return fetch(address, {
+			method: "POST",
+			body: JSON.stringify(mes),
+			headers: {
+					"Content-Type": "application/json",
+			},
+	})
+	.then(response => {
+			// Obsługa poprawnej odpowiedzi
+			if (!response.ok) {
+					throw new Error(`HTTP error! Status: ${response.status}`);
+			}
+			return response.json();
 	});
 }
 
 setToBackend("wiadomość")
-.then(response => {
-		// Obsługa poprawnej odpowiedzi
-		if (!response.ok) {
-				throw new Error(`HTTP error! Status: ${response.status}`);
-		}
-		return response.json();
-})
-.then(data => {
-		// Obsługa danych z odpowiedzi
-		console.log(data);
-})
-.catch(error => {
-		// Obsługa błędów
-		console.error("Błąd fetch:", error);
-});
+	.then(data => {
+			// Obsługa danych z odpowiedzi
+			console.log(data);
+	})
+	.catch(error => {
+			// Obsługa błędów
+			console.error("Błąd fetch:", error);
+	});
 
 let apple = { x: 0, y: 0 }
 let direction = "D", l = [3, 3];
