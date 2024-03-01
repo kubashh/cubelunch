@@ -20,7 +20,7 @@ function setToBackend(mes) {
 	});
 }
 
-setToBackend("wiadomość");
+//setToBackend("wiadomość");
 
 let apple = { x: 0, y: 0 }
 let direction = "D", l = [3, 3];
