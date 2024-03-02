@@ -1,0 +1,46 @@
+body {
+  font-family: Arial;
+  background-color: aliceblue;
+}
+
+section.center {
+  background-color: white;
+  display: flex;
+  /*justify-content: center;*/
+  /*align-self: center;*/
+  
+  width: 260px;
+  
+  /*height: 300px;*/
+  margin: 40px auto 0 auto;
+  border: 10px solid white;
+  padding: 0px 20px 20px 20px;
+  border-radius: 10px;
+}
+
+a {
+  text-decoration: none;
+}
+
+section.center h1, h2, input, 
+button, a {
+  width: 260px;
+}
+
+section.center label, input, button {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+section.center input {
+  padding: 5px;
+  border-radius: 10px;
+  background-color: #eee;
+  border-color: gray;
+}
+
+.button {
+  background-color: #ddf;
+  border: 10px solid #ddf;
+  border-radius: 10px;
+}
