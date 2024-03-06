@@ -6,7 +6,7 @@ async function sendRequest() {
       method: "POST",
       body: JSON.stringify({ data: "wysylam" }),
       headers: {
-        "Content-Type": "text/plain"
+        "Content-Type": "application/json"
       }
     });
 
