@@ -4,7 +4,7 @@ async function sendRequest() {
   try {
     const response = await fetch(adress, {
       method: "POST",
-      body: "wysylam",
+      body: JSON.stringify({ data: "wysylam" }),
       headers: {
         "Content-Type": "text/plain"
       }
