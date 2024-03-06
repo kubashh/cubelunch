@@ -1,29 +1,30 @@
 const adress = "https://ideal-disco-wr7pjrr654jr367q-8888.app.github.dev";
 
-function sendRequest() {
-  fetch(adress, {
-    method: "POST",
-    body: JSON.stringify({ data: "wysylam" }),
-    headers: {
-      "Content-Type": "application/json"
-    }
-  })
-  .then(response => {
+async function sendRequest() {
+  try {
+    const response = await fetch(adress, {
+      method: "POST",
+      body: JSON.stringify({ data: "wysylam" }),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    });
+
     if (!response.ok) {
       throw new Error(`Błąd zapytania: ${response.status} ${response.statusText}`);
     }
-    console.log("Zapytanie zostało wysłane poprawnie.");
-  })
-  .catch(error => {
+
+    const responseData = await response.json();
+    console.log("Odpowiedź od serwera:", responseData);
+  } catch (error) {
     console.error("Błąd podczas wykonywania żądania:", error);
-  });
+  }
 }
 
 async function getRequest() {
   try {
     const response = await fetch(adress, {
       method: "GET",
-      body: JSON.stringify({ data: "wysylam" }),
       headers: {
         "Content-Type": "application/json"
       }
