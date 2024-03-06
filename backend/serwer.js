@@ -5,7 +5,14 @@ const app = express();
 
 app.use(bodyParser.json());
 
-app.use(cors());
+const corsOptions = {
+  origin: "https://kubashh.github.io/", // Ustaw domenę, z której zezwalasz na żądania
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  credentials: true, // Włącz obsługę nagłówka credentials
+  optionsSuccessStatus: 204,
+};
+
+app.use(cors(corsOptions));
 
 const port = 8888;
 
