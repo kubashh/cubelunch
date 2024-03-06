@@ -17,6 +17,7 @@ app.use(cors(corsOptions));
 const port = 8888;
 
 const snakes = [];
+const board = [];
 
 // Dodaj nagłówek CORS na serwerze
 app.use((req, res, next) => {
