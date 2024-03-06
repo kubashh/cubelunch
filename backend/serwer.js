@@ -18,13 +18,12 @@ app.use((req, res, next) => {
 
 app.get("/", async (req, res) => {
   console.log(req);
-  const answer = JSON.stringify({ data: "odpowiedz"});
+  const answer = JSON.stringify({ data: "odpowiedz" });
   res.send(answer);
 });
 
 app.post("/", (req, res) => {
   console.log(req.body);
-  res.send("Serwer działa");
   res.status(200).end();
 });
 
