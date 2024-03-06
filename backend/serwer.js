@@ -1,11 +1,13 @@
 const express = require("express");
 const bodyParser = require('body-parser');
-//const cors = require("cors");
+const cors = require("cors");
 const app = express();
 
 app.use(bodyParser.json());
 
-//app.use(cors());
+app.use(cors());
+
+const port = 8888;
 
 const snakes = [];
 
@@ -25,6 +27,6 @@ app.post("/", (req, res) => {
   res.status(200).end();
 });
 
-app.listen(8888, () => {
-  console.log("Aplikacja wystartowała na porcie 8888");
+app.listen(port, () => {
+  console.log(`Aplikacja wystartowała na porcie {port}`);
 });
