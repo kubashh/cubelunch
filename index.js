@@ -1,4 +1,4 @@
-const adress = "https://kubashh.github.io/cubelunch/backend/serwer.js"
+const adress = "https://ideal-disco-wr7pjrr654jr367q-8888.app.github.dev"//"https://kubashh.github.io/cubelunch/backend/serwer.js"
 
 async function sendRequest() {
   try {
