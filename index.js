@@ -13,9 +13,6 @@ async function sendRequest() {
     if(!response.ok) {
       throw new Error(`Błąd zapytania: ${response.status} ${response.statusText}`);
     }
-
-    const responseData = await response.json();
-    console.log("Odpowiedź od serwera:", responseData);
   } catch(error) {
     console.error("Błąd podczas wykonywania żądania:", error);
   }
