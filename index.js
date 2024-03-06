@@ -10,33 +10,23 @@ async function sendRequest() {
       }
     });
 
-    if (!response.ok) {
+    if(!response.ok) {
       throw new Error(`Błąd zapytania: ${response.status} ${response.statusText}`);
     }
 
     const responseData = await response.json();
     console.log("Odpowiedź od serwera:", responseData);
-  } catch (error) {
+  } catch(error) {
     console.error("Błąd podczas wykonywania żądania:", error);
   }
 }
 
 async function getRequest() {
   try {
-    const response = await fetch(adress, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json"
-      }
-    });
-
-    // Tutaj możesz dodać kod obsługi odpowiedzi, np. sprawdzanie statusu
-    if(response.ok) {
-      console.log("Żądanie wykonane pomyślnie!");
-    } else {
-      console.error("Błąd podczas wykonywania żądania:", response.status);
-    }
+    const response = await fetch(adress);
+    const data = await response.json();
+    console.log("Otrzymane dane:", data);
   } catch(error) {
-    console.error("Błąd podczas wykonywania żądania:", error);
+    console.error("Błąd pobierania danych:", error);
   }
 }
