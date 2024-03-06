@@ -1,17 +1,7 @@
 const express = require("express");
-//const cors = require("cors");
 const app = express();
 
 app.use(express.json());
-
-/*const corsOptions = {
-  origin: "https://kubashh.github.io/", // Ustaw domenę, z której zezwalasz na żądania
-  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-  credentials: true, // Włącz obsługę nagłówka credentials
-  optionsSuccessStatus: 204,
-};
-
-app.use(cors(corsOptions));*/
 
 const port = 8888;
 
@@ -28,7 +18,8 @@ app.use((req, res, next) => {
 
 app.get("/", async (req, res) => {
   console.log(req);
-  res.send("Serwer działa");
+  const answer = JSON.stringify({ data: "odpowiedz"});
+  res.send(answer);
 });
 
 app.post("/", (req, res) => {
