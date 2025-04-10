@@ -19,7 +19,11 @@ export const post = async (
         }
   )
 
+  console.log(response)
+
   const resData = await response.json()
+
+  console.log(resData)
 
   if (response.ok) cb(resData)
 }
