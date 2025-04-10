@@ -1,0 +1,1 @@
+import{a as n}from"./Header-B02Bgx4q.js";const c=async(t,e,o)=>{const s=await fetch(`${n}${t}`,o?{method:"POST",body:JSON.stringify(o),mode:"no-cors"}:{method:"GET",mode:"no-cors"}),a=await s.json();s.ok&&e(a)};export{c as p};
