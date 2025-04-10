@@ -19,7 +19,13 @@ export const post = async (
         }
   )
 
-  const resData = await response.json()
+  console.log(response)
 
-  if (response.ok) cb(resData)
+  if (response.ok) {
+    const resData = await response.json()
+
+    cb(resData)
+  } else {
+    console.error(`Error: ${response}`)
+  }
 }
