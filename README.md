@@ -1,3 +1,3 @@
 # CubeLunch
 
-Usprawnijmy szkolne obiadki.
+Eat and enjoj
