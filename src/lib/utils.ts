@@ -7,10 +7,16 @@ export const post = async (
 ) => {
   const response = await fetch(
     `${adress}${url}`,
-    data || {
-      method: `POST`,
-      body: JSON.stringify(data),
-    }
+    data
+      ? {
+          method: `POST`,
+          body: JSON.stringify(data),
+          mode: `no-cors`,
+        }
+      : {
+          method: `GET`,
+          mode: `no-cors`,
+        }
   )
 
   const resData = await response.json()
