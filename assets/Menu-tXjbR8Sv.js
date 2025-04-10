@@ -1,0 +1,1 @@
+import{j as e}from"./index-DGAex1kv.js";import{H as s,h as r,F as o}from"./Header-BFaJ6ghA.js";const n=()=>e.jsxs("div",{style:{margin:"auto"},children:[e.jsx(s,{options:r}),e.jsx("h1",{style:{margin:32},children:"Welcome to CubeLunch!"}),e.jsx("div",{children:"Login or Register"}),e.jsx(o,{})]});export{n as default};
