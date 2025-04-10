@@ -10,13 +10,9 @@ export const loadData = (path: string) => {
   const [data, setData] = useState<any | null>(null)
 
   useEffect(() => {
-    console.log(
-      post(path, (data) => {
-        // x2 fetch go to fix!!!!
-        console.log(`fsfjsdjhj`)
-        setData(data)
-      })
-    )
+    post(path, (data) => {
+      setData(data)
+    })
   }, [])
 
   return data
