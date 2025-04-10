@@ -1,0 +1,1 @@
+import{a as n}from"./Header-HDrDP-Hw.js";const c=async(e,r,s)=>{const o=await fetch(`${n}${e}`,s?{method:"POST",body:JSON.stringify(s),mode:"no-cors"}:{method:"GET",mode:"no-cors"});if(console.log(o),o.ok){const t=await o.json();r(t)}else console.error(`Error: ${o}`)};export{c as p};
