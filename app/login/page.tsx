@@ -1,6 +1,6 @@
-import { Header } from "../components/Header"
+import Header from "../components/Header"
+import LoginForm from "./LoginForm"
 import { isLogged, navigate } from "../lib/utilServer"
-import { LoginForm } from "./LoginForm"
 
 export default async function Login() {
   if (await isLogged()) navigate(`store`)

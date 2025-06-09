@@ -1,22 +1,20 @@
-import { CHARSET, TOKEN_LENGTH } from "@/app/lib/consts"
-import { hashSync, compareSync } from "bcryptjs"
+import { compareSync, hashSync } from "bcryptjs"
+import { TOKEN_LENGTH } from "@/app/lib/consts"
+import { randChar } from "@/app/lib/util"
+
+const SALT = process.env.SALT
+const SALT_LENGTH = SALT?.length
 
 export function hash(password: string) {
-  return hashSync(password, process.env.SALT)
+  return hashSync(password, SALT).slice(SALT_LENGTH)
 }
 
 export function compare(password: string, passwordHash: string) {
-  return compareSync(password, passwordHash)
-}
-
-function randChar() {
-  return CHARSET.at(Math.floor(Math.random() * CHARSET.length))
+  return compareSync(password, SALT + passwordHash)
 }
 
 export function genToken() {
   let token = ``
-
   for (let i = 0; i < TOKEN_LENGTH; i++) token += randChar()
-
   return token
 }

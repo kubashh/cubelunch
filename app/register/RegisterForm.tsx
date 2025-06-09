@@ -1,9 +1,11 @@
 "use client"
 
-import { Form } from "../components/Form"
+import { useRouter } from "next/navigation"
+import Form from "../components/Form"
 import { formValues } from "../lib/consts"
 
-export function RegisterForm() {
+export default function RegisterForm() {
+  const router = useRouter()
   return (
     <Form
       name="Rejestracja"
@@ -11,9 +13,9 @@ export function RegisterForm() {
       url="register"
       elements={[formValues.username, formValues.password, formValues.email]}
       cb={(data) => {
-        if (!data.success) return alert(data.message)
+        if (!data.success) return data.message && alert(data.message)
 
-        location.href = `store`
+        router.push(`login`)
       }}
       other={{
         label: "Zaloguj się",

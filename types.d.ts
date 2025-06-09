@@ -5,9 +5,11 @@ type User = {
   email: string
   token: string
   rule: number
+  cart: string[]
 }
 
 type Product = {
+  id: number
   label: string
   cost: string
   img: string
@@ -38,9 +40,6 @@ type User = {
 }
 
 type HeaderProps = {
-  menu?: boolean
-  login?: boolean
-  register?: boolean
   logout?: boolean
 }
 

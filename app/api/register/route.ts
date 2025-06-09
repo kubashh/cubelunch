@@ -6,6 +6,7 @@ export async function POST(req: NextRequest) {
 
   const ret = setUser(data)
 
+  if (!ret.success) return NextResponse.json(ret)
   return NextResponse.json(ret)
 }
 

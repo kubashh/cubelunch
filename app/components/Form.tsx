@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { post } from "../lib/util"
+import { post } from "../lib/utilClient"
 
 function Input(props: FormInputType) {
   return (
@@ -16,7 +16,7 @@ function Input(props: FormInputType) {
   )
 }
 
-export function Form({ name, btnLabel, url, elements, cb, other }: FormProps) {
+export default function Form({ name, btnLabel, url, elements, cb, other }: FormProps) {
   let firstChild = true
 
   return (

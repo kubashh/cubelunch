@@ -1,10 +1,10 @@
 "use client"
 
-import { Form } from "../components/Form"
+import Form from "../components/Form"
 import { formValues } from "../lib/consts"
-import { setCookie } from "../lib/util"
+import { setCookie } from "../lib/utilClient"
 
-export function LoginForm() {
+export default function LoginForm() {
   return (
     <Form
       name="Login"
@@ -12,11 +12,11 @@ export function LoginForm() {
       url="token"
       elements={[formValues.username, formValues.password]}
       cb={(data) => {
-        if (!data.token) return
+        if (!data.token) return data.message && alert(data.message)
 
         setCookie(`token`, data.token)
 
-        location.href = `store`
+        location.reload()
       }}
       other={{
         label: "Zarejestruj się",

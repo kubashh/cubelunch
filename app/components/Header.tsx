@@ -1,5 +1,6 @@
 import Link from "next/link"
-import { Logout } from "./Logout"
+import Logout from "./Logout"
+import LogoButton from "./LogoButton"
 
 function HeaderLink({ label, url }: HeaderLinkType) {
   return typeof label === `string` ? (
@@ -11,15 +12,12 @@ function HeaderLink({ label, url }: HeaderLinkType) {
   )
 }
 
-export function Header({ menu, login, register, logout }: HeaderProps) {
+export default function Header({ logout }: HeaderProps) {
   return (
     <header className="w-screen h-10">
-      <span className="bg-(image:--cubeLunchLogo) h-10 w-50 float-left" />
+      <LogoButton />
 
       {logout && <HeaderLink url="login" label={<Logout />} />}
-      {register && <HeaderLink url="register" label="Register" />}
-      {login && <HeaderLink url="login" label="Login" />}
-      {menu && <HeaderLink url="/" label="Menu" />}
     </header>
   )
 }

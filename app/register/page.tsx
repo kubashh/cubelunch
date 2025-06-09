@@ -1,13 +1,13 @@
-import { Header } from "../components/Header"
+import Header from "../components/Header"
+import RegisterForm from "./RegisterForm"
 import { isLogged, navigate } from "../lib/utilServer"
-import { RegisterForm } from "./RegisterForm"
 
 export default async function Register() {
   if (await isLogged()) navigate(`store`)
 
   return (
     <>
-      <Header menu />
+      <Header />
 
       <main className="w-fit mx-auto">
         <RegisterForm />

@@ -1,16 +1,28 @@
-import { Header } from "./components/Header"
+import Link from "next/link"
+import Header from "./components/Header"
 import { navigateToken } from "./lib/utilServer"
+
+function HomeLink({ url, label }: HeaderLinkType) {
+  return (
+    <Link className="mx-auto my-4 text-2xl" href={url}>
+      {label}
+    </Link>
+  )
+}
 
 export default async function Home() {
   await navigateToken(`/`)
 
   return (
     <>
-      <Header register login menu />
+      <Header />
 
       <main className="mx-auto my-12">
-        <h1 className="mx-auto mb-3 font-bold text-3xl">Witaj w CubeLunch!</h1>
-        <div>Zaloguj się lub zarejestruj</div>
+        <h1 className="mx-auto mb-6 font-bold text-3xl">Witaj w CubeLunch!</h1>
+        <div className="flex flex-col">
+          <HomeLink url="login" label="Zaloguj się" />
+          <HomeLink url="register" label="Zarejestruj się" />
+        </div>
       </main>
     </>
   )
