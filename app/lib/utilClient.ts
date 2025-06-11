@@ -9,11 +9,8 @@ export async function post(url: string, cb: (data: any) => void, data: any) {
   })
 
   if (response.ok) {
-    const resData = await response.json()
-    cb(resData)
-  } else {
-    console.error(`Error: `, response)
-  }
+    cb(await response.json())
+  } else console.error(`Error: `, response)
 }
 
 function getExpires(days: number) {

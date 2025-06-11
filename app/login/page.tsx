@@ -1,9 +1,9 @@
 import Header from "../components/Header"
 import LoginForm from "./LoginForm"
-import { isLogged, navigate } from "../lib/utilServer"
+import { navigateToken } from "../lib/utilServer"
 
 export default async function Login() {
-  if (await isLogged()) navigate(`store`)
+  await navigateToken(`login`)
 
   return (
     <>

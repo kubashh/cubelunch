@@ -19,10 +19,10 @@ export default async function Home() {
 
       <main className="mx-auto my-12">
         <h1 className="mx-auto mb-6 font-bold text-3xl">Witaj w CubeLunch!</h1>
-        <div className="flex flex-col">
-          <HomeLink url="login" label="Zaloguj się" />
-          <HomeLink url="register" label="Zarejestruj się" />
-        </div>
+
+        <HomeLink url="login" label="Zaloguj się" />
+        <span className="mx-8 text-2xl">lub</span>
+        <HomeLink url="register" label="Zarejestruj się" />
       </main>
     </>
   )

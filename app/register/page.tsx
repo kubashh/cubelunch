@@ -1,9 +1,9 @@
 import Header from "../components/Header"
 import RegisterForm from "./RegisterForm"
-import { isLogged, navigate } from "../lib/utilServer"
+import { navigateToken } from "../lib/utilServer"
 
 export default async function Register() {
-  if (await isLogged()) navigate(`store`)
+  await navigateToken(`register`)
 
   return (
     <>

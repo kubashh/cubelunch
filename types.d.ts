@@ -51,3 +51,5 @@ type HeaderLinkType = {
 type cookieType = `token`
 
 type urlType = `/` | `login` | `register` | `store` | `kitchen` | `admin`
+
+type Obj<T> = { [key: string]: T }
