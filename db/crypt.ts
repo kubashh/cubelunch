@@ -1,8 +1,8 @@
 import { compareSync, hashSync } from "bcryptjs"
 import { TOKEN_LENGTH } from "@/app/lib/consts"
-import { randChar } from "@/app/lib/util"
+import { randChar } from "@/app/lib/utilServer"
 
-if (!process.env.SALT) throw Error(`There is no SALT! Generete it and save in '.env'`)
+if (!process.env.SALT) throw Error(`There is no SALT! Generete it and save in '.env' file`)
 const SALT = process.env.SALT
 const SALT_LENGTH = SALT.length
 

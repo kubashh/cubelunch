@@ -7,7 +7,7 @@ export default async function Register() {
 
   return (
     <>
-      <Header />
+      <Header menu />
 
       <main className="w-fit mx-auto">
         <RegisterForm />

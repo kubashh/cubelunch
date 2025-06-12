@@ -2,7 +2,7 @@ import Link from "next/link"
 import Header from "./components/Header"
 import { navigateToken } from "./lib/utilServer"
 
-function HomeLink({ url, label }: HeaderLinkType) {
+function HomeLink({ url, label }: HeaderLinkProps) {
   return (
     <Link className="mx-auto my-4 text-2xl" href={url}>
       {label}

@@ -1,6 +1,7 @@
 import Link from "next/link"
+import { formValues, formValuesEmail } from "../lib/consts"
 
-function Input(props: FormInputType) {
+function Input(props: LRFormInputProps) {
   return (
     <input
       type={props.type}
@@ -16,14 +17,14 @@ function Input(props: FormInputType) {
   )
 }
 
-export default function Form({ name, btnLabel, action, elements, other }: FormProps) {
+export default function LRForm({ action, login }: LRFormProps) {
   let firstChild = true
 
   return (
     <form className="w-fit px-6 pt-6 rounded-2xl bg-zinc-800 flex flex-col" action={action}>
-      <h1 className="mb-3 text-3xl">{name}</h1>
+      <h1 className="mb-3 text-3xl">{login ? `Login` : `Rejestracja`}</h1>
 
-      {elements.map((element) => {
+      {(login ? formValues : formValuesEmail).map((element) => {
         const ch = firstChild
         firstChild = false
         return <Input key={element.name} {...element} autoFocus={ch} />
@@ -34,10 +35,10 @@ export default function Form({ name, btnLabel, action, elements, other }: FormPr
         className="mx-auto mt-4 border-2 border-zinc-950 py-1 text-xl rounded-xl cursor-pointer"
         style={{ width: `calc(100% - 32px)` }}
       >
-        {btnLabel}
+        {login ? `Zaloguj` : `Zarejestruj`}
       </button>
-      <Link href={other.url} className="mt-5 mb-2.5 ml-auto">
-        {other.label}
+      <Link href={login ? `register` : `login`} className="mt-5 mb-2.5 ml-auto">
+        {login ? `Zarejestruj się` : `Zaloguj się`}
       </Link>
     </form>
   )

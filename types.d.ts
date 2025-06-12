@@ -1,6 +1,7 @@
 // Backend
 type User = {
-  username: string
+  id: number
+  name: string
   passwordHash: string
   email: string
   token: string
@@ -10,38 +11,32 @@ type User = {
 
 type Product = {
   id: number
-  label: string
+  name: string
   cost: string
   img: string
 }
 
 type tokenProps = {
-  username: string
+  name: string
   password: string
 }
 
 type registerProps = {
-  username: string
+  name: string
   password: string
   email: string
 }
 
 // Frontend
-type FormInputType = {
+type LRFormInputProps = {
   name: string
   type: string
   autoFocus: boolean
 }
 
-type FormProps = {
-  name: string
-  btnLabel: string
+type LRFormProps = {
   action: (formData: FormData) => void | Promise<void>
-  elements: { name: string; type: string }[]
-  other: {
-    label: string
-    url: string
-  }
+  login?: boolean
 }
 
 type User = {
@@ -51,10 +46,11 @@ type User = {
 
 type HeaderProps = {
   logout?: boolean
+  menu?: boolean
 }
 
-type HeaderLinkType = {
-  label: any
+type HeaderLinkProps = {
+  label: string
   url: string
 }
 

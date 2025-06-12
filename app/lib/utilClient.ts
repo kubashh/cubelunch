@@ -10,7 +10,7 @@
 
 //   if (response.ok) {
 //     cb(await response.json())
-//   } else console.error(`Error: `, response)
+//   } else throw Error(response)
 // }
 
 function getExpires(days: number) {

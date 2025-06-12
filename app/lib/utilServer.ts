@@ -1,7 +1,7 @@
 import { users } from "@/db/db"
 import { cookies } from "next/headers"
 import { redirect } from "next/navigation"
-import { CODE_ADMIN, CODE_COOK, CODE_USER, TOKEN_LENGTH } from "./consts"
+import { CHARSET, CODE_ADMIN, CODE_COOK, CODE_USER, TOKEN_LENGTH } from "./consts"
 import { getUserIdByToken } from "@/db/fns"
 
 async function getTokenFromCookies() {
@@ -11,7 +11,7 @@ async function getTokenFromCookies() {
 
 export async function getUserFromCookies() {
   const token = await getTokenFromCookies()
-  return users.find((user) => user.token === token)
+  return users.get(`token`, token)
 }
 
 async function isLogged() {
@@ -39,4 +39,19 @@ export async function navigateToken(currentUrl: urlType) {
     default:
       return navigate(`/`, currentUrl)
   }
+}
+
+export function getElementFromUrl(url: string, key: string) {
+  return Object.fromEntries(new URL(url).searchParams.entries())[key]
+}
+
+export function randChar() {
+  return CHARSET.at(Math.floor(Math.random() * CHARSET.length))
+}
+
+const MAX_PRODUCT_ID = 2 ** 52
+export function genId(arr: any[]) {
+  let id = Math.floor(Math.random() * MAX_PRODUCT_ID)
+  for (const e of arr) if (e.id === id) return genId(arr)
+  return id
 }

@@ -7,7 +7,7 @@ export default async function Login() {
 
   return (
     <>
-      <Header />
+      <Header menu />
 
       <main className="w-fit mx-auto">
         <LoginForm />

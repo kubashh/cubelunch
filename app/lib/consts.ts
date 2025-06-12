@@ -5,8 +5,12 @@ export const CODE_USER = 1
 export const CODE_COOK = 2
 export const CODE_ADMIN = 3
 
-export const formValues = {
-  username: { name: `Login`, type: `username` },
-  password: { name: `Hasło`, type: `password` },
-  email: { name: `Email`, type: `email` },
-}
+export const formValues = [
+  { name: `Login`, type: `username` },
+  { name: `Hasło`, type: `password` },
+]
+export const formValuesEmail = [
+  { name: `Login`, type: `username` },
+  { name: `Hasło`, type: `password` },
+  { name: `Email`, type: `email` },
+]

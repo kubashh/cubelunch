@@ -3,10 +3,10 @@ import Header from "../components/Header"
 import { navigateToken } from "../lib/utilServer"
 import { products } from "@/db/db"
 
-function Product({ label, cost, img }: Product) {
+function Product({ name, cost, img }: Product) {
   return (
     <div className="w-54 p-2 rounded-2xl bg-zinc-900">
-      <span>{label}</span>
+      <span>{name}</span>
       <span className="float-right">{cost} </span>
       <Image priority={true} width="200" height="200" alt="" src={img} />
       <button className="w-[100%] text-xl cursor-pointer">Dodaj do koszyka</button>
@@ -22,8 +22,8 @@ export default async function Store() {
       <Header logout />
 
       <main className="m-6 grid grid-cols-[repeat(auto-fit,200px)] gap-8 justify-center">
-        {products.map((p) => (
-          <Product key={p.label} {...p} />
+        {products.data.map((p) => (
+          <Product key={p.id} {...p} />
         ))}
       </main>
     </>

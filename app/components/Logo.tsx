@@ -1,4 +1,4 @@
-export function Logo() {
+export default function Logo() {
   return <span className="bg-(image:--cubeLunchLogo) float-left h-10 w-50" />
 }
 
