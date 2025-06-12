@@ -21,7 +21,7 @@ class ArrDB<T extends { id: number }> {
   }
 
   getById(id: number) {
-    return this.arr.find((e: any) => e.id === id)
+    return this.arr.find((e) => e.id === id)
   }
 
   create(obj: T) {
@@ -30,7 +30,7 @@ class ArrDB<T extends { id: number }> {
   }
 
   createById(id: number, obj: T) {
-    const index = this.arr.findIndex((e: any) => e.id === id)
+    const index = this.arr.findIndex((e) => e.id === id)
     this.arr[index] = { ...obj, id }
     writeJsonFile(this.path, this.arr)
   }
@@ -43,7 +43,7 @@ class ArrDB<T extends { id: number }> {
   }
 
   deleteById(id: number) {
-    const index = this.arr.findIndex((e: any) => e.id === id)
+    const index = this.arr.findIndex((e) => e.id === id)
     if (index === -1) return
     this.arr.splice(index, 1)
     writeJsonFile(this.path, this.arr)

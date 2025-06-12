@@ -1,3 +1,7 @@
+/// <reference types="next" />
+/// <reference types="next/image-types/global" />
+/// <reference types="react" />
+
 // Backend
 type User = {
   id: number

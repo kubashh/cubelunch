@@ -50,7 +50,7 @@ export function randChar() {
 }
 
 const MAX_PRODUCT_ID = 2 ** 52
-export function genId(arr: any[]) {
+export function genId(arr: Obj<any>[]) {
   let id = Math.floor(Math.random() * MAX_PRODUCT_ID)
   for (const e of arr) if (e.id === id) return genId(arr)
   return id
