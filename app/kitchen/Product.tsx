@@ -1,6 +1,5 @@
 "use client"
 
-import type { MouseEvent } from "react"
 import Image from "next/image"
 import { editProduct } from "../actions/editProduct"
 
@@ -29,7 +28,7 @@ export default function Product({ name, cost, img, id }: Product) {
       </button>
       <button
         type="button"
-        onClick={async (e: MouseEvent<HTMLButtonElement>) => {
+        onClick={async (e: React.MouseEvent<HTMLButtonElement>) => {
           e.preventDefault()
 
           await fetch(`api/products?id=${id}`, { method: `DELETE` })
