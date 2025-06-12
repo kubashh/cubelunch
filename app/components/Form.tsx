@@ -1,10 +1,10 @@
 import Link from "next/link"
-import { post } from "../lib/utilClient"
 
 function Input(props: FormInputType) {
   return (
     <input
       type={props.type}
+      name={props.type}
       placeholder={props.name}
       id={props.type}
       minLength={4}
@@ -16,29 +16,11 @@ function Input(props: FormInputType) {
   )
 }
 
-export default function Form({ name, btnLabel, url, elements, cb, other }: FormProps) {
+export default function Form({ name, btnLabel, action, elements, other }: FormProps) {
   let firstChild = true
 
   return (
-    <form
-      id="form"
-      className="w-fit px-6 pt-6 rounded-2xl bg-zinc-800 flex flex-col"
-      onSubmit={(e) => {
-        e.preventDefault()
-        const ref = document.getElementById(`form`)
-        if (!ref) return
-
-        const data: any = {}
-
-        for (const element of ref.getElementsByTagName(`input`)) {
-          if (elements.find((e) => e.type === element.id)) {
-            data[element.id] = element.value
-          }
-        }
-
-        post(url, cb, data)
-      }}
-    >
+    <form className="w-fit px-6 pt-6 rounded-2xl bg-zinc-800 flex flex-col" action={action}>
       <h1 className="mb-3 text-3xl">{name}</h1>
 
       {elements.map((element) => {

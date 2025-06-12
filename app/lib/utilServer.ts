@@ -2,7 +2,7 @@ import { users } from "@/db/db"
 import { cookies } from "next/headers"
 import { redirect } from "next/navigation"
 import { CODE_ADMIN, CODE_COOK, CODE_USER, TOKEN_LENGTH } from "./consts"
-import { getUserByToken } from "@/db/fns"
+import { getUserIdByToken } from "@/db/fns"
 
 async function getTokenFromCookies() {
   const cookieStore = await cookies()
@@ -29,10 +29,7 @@ export async function navigateToken(currentUrl: urlType) {
   const token = await getTokenFromCookies()
   if (token?.length !== TOKEN_LENGTH) return navigate(`/`, currentUrl)
 
-  const user = getUserByToken(token)
-  if (!user) return navigate(`/`, currentUrl)
-
-  switch (user.rule) {
+  switch (getUserIdByToken(token)) {
     case CODE_USER:
       return navigate(`store`, currentUrl)
     case CODE_COOK:

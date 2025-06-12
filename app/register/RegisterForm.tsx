@@ -1,22 +1,31 @@
 "use client"
 
-import { useRouter } from "next/navigation"
 import Form from "../components/Form"
 import { formValues } from "../lib/consts"
+import { register } from "../actions/register"
+import { redirect } from "next/navigation"
+
+async function registerAction(formData: FormData) {
+  const data = {
+    username: formData.get(`username`) as string,
+    password: formData.get(`password`) as string,
+    email: formData.get(`email`) as string,
+  }
+
+  const res = await register(data)
+
+  if (res) return alert(res.message)
+
+  redirect(`login`)
+}
 
 export default function RegisterForm() {
-  const router = useRouter()
   return (
     <Form
       name="Rejestracja"
       btnLabel="Zarejestruj"
-      url="register"
+      action={registerAction}
       elements={[formValues.username, formValues.password, formValues.email]}
-      cb={(data) => {
-        if (!data.success) return data.message && alert(data.message)
-
-        router.push(`login`)
-      }}
       other={{
         label: "Zaloguj się",
         url: "login",

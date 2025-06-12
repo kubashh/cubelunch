@@ -15,6 +15,17 @@ type Product = {
   img: string
 }
 
+type tokenProps = {
+  username: string
+  password: string
+}
+
+type registerProps = {
+  username: string
+  password: string
+  email: string
+}
+
 // Frontend
 type FormInputType = {
   name: string
@@ -25,9 +36,8 @@ type FormInputType = {
 type FormProps = {
   name: string
   btnLabel: string
-  url: string
+  action: (formData: FormData) => void | Promise<void>
   elements: { name: string; type: string }[]
-  cb: (arg: any) => void
   other: {
     label: string
     url: string

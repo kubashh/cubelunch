@@ -1,13 +1,6 @@
 import { users, products, saveUsers } from "./db"
 import { compare, genToken, hash } from "./crypt"
 
-function isUserValid(user: any, email = false) {
-  if (!user.username || user?.username?.length < 4) return false
-  if (!user.password || user?.password?.length < 4) return false
-  if (email && (!user.email || user?.email?.length < 4)) return false
-  return true
-}
-
 export function getToken(login: string, password: string) {
   const user = getUser(login)
   if (!user) return
@@ -20,16 +13,19 @@ export function getToken(login: string, password: string) {
   }
 }
 
-export function getUserByToken(token: string) {
-  return users.find((u) => u.token === token)
+// export function getUserByToken(token: string) {
+//   return users.find((u) => u.token === token)
+// }
+
+export function getUserIdByToken(token: string) {
+  return users.find((u) => u.token === token)?.rule || 0
 }
 
 function getUser(name: string) {
   return users.find((u) => name === u.username)
 }
 
-export function setUser(user: any) {
-  if (!isUserValid(user, true)) return { message: `Złe dane!` }
+export function setUser(user: registerProps) {
   if (getUser(user.username)) return { message: `Użytkownik o takim imieniu już istnieje!` }
 
   users.push({
@@ -42,8 +38,6 @@ export function setUser(user: any) {
   })
 
   saveUsers()
-
-  return { success: true }
 }
 
 export function setProduct(label: string, cost: string, img?: string) {
