@@ -19,12 +19,12 @@ type Product = {
   img: string
 }
 
-type tokenProps = {
+type TokenProps = {
   name: string
   password: string
 }
 
-type registerProps = {
+type RegisterProps = {
   name: string
   password: string
   email: string
@@ -42,11 +42,6 @@ type LRFormProps = {
   login?: boolean
 }
 
-type User = {
-  name: string
-  password: string
-}
-
 type HeaderProps = {
   logout?: boolean
   menu?: boolean
@@ -57,8 +52,15 @@ type HeaderLinkProps = {
   url: string
 }
 
-type cookieType = `token`
+type ImageGrabberCbType = (data: string) => void
 
-type urlType = `/` | `login` | `register` | `store` | `kitchen` | `admin`
+type ImageGrabberProps = {
+  src: string
+  cb: ImageGrabberCbType
+}
+
+type CookieType = `token`
+
+type UrlType = `/` | `login` | `register` | `store` | `kitchen` | `admin`
 
 type Obj<T> = { [key: string]: T }

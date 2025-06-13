@@ -1,7 +1,7 @@
 "use client"
 
+import { register } from "../actions/user"
 import LRForm from "../components/LRForm"
-import { register } from "../actions/register"
 import { redirect } from "next/navigation"
 
 async function registerAction(formData: FormData) {

@@ -12,7 +12,7 @@ class ArrDB<T extends { id: number }> {
     } else this.arr = []
   }
 
-  get data() {
+  getAll() {
     return this.arr
   }
 

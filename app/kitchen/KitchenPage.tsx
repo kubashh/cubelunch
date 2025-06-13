@@ -1,7 +1,9 @@
 import Product from "./Product"
-import { products } from "@/db/db"
+import { getProducts } from "@/app/actions/getAction"
 
-export default function KitchenPage() {
+export default async function KitchenPage() {
+  const products = await getProducts()
+
   return (
     <>
       <div className="my-3 p-2 grid grid-cols-5 font-bold">
@@ -9,7 +11,7 @@ export default function KitchenPage() {
         <span>Koszt</span>
         <span>Zdjęcie</span>
       </div>
-      {products.data.map((p) => (
+      {products.map((p) => (
         <Product key={p.id} {...p} />
       ))}
     </>

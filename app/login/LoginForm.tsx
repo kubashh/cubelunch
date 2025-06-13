@@ -2,7 +2,8 @@
 
 import LRForm from "../components/LRForm"
 import { setCookie } from "../lib/utilClient"
-import { token } from "../actions/token"
+import { navigateByRule } from "../lib/util"
+import { token } from "../actions/user"
 
 async function login(formData: FormData) {
   const data = {
@@ -12,11 +13,11 @@ async function login(formData: FormData) {
 
   const res = await token(data)
 
-  if (!res.token) return alert(res.message)
+  if (!res.token || !res.rule) return alert(res.message)
 
   setCookie(`token`, res.token)
 
-  location.reload()
+  navigateByRule(res.rule, `login`)
 }
 
 export default function LoginForm() {

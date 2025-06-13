@@ -9,8 +9,4 @@ export const formValues = [
   { name: `Login`, type: `username` },
   { name: `Hasło`, type: `password` },
 ]
-export const formValuesEmail = [
-  { name: `Login`, type: `username` },
-  { name: `Hasło`, type: `password` },
-  { name: `Email`, type: `email` },
-]
+export const formValuesEmail = [...formValues, { name: `Email`, type: `email` }]

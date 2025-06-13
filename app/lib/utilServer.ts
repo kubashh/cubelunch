@@ -1,8 +1,8 @@
 import { users } from "@/db/db"
 import { cookies } from "next/headers"
-import { redirect } from "next/navigation"
-import { CHARSET, CODE_ADMIN, CODE_COOK, CODE_USER, TOKEN_LENGTH } from "./consts"
+import { CHARSET, TOKEN_LENGTH } from "./consts"
 import { getUserIdByToken } from "@/db/fns"
+import { navigate, navigateByRule } from "./util"
 
 async function getTokenFromCookies() {
   const cookieStore = await cookies()
@@ -18,27 +18,14 @@ async function isLogged() {
   return !!(await getUserFromCookies())
 }
 
-export function navigate(url: urlType, curentUrl: urlType) {
-  if (curentUrl !== url) redirect(url)
-}
-
-export async function navigateToken(currentUrl: urlType) {
+export async function navigateToken(currentUrl: UrlType) {
   if (!(await isLogged())) return
 
   // login
   const token = await getTokenFromCookies()
   if (token?.length !== TOKEN_LENGTH) return navigate(`/`, currentUrl)
 
-  switch (getUserIdByToken(token)) {
-    case CODE_USER:
-      return navigate(`store`, currentUrl)
-    case CODE_COOK:
-      return navigate(`kitchen`, currentUrl)
-    case CODE_ADMIN:
-      return navigate(`admin`, currentUrl)
-    default:
-      return navigate(`/`, currentUrl)
-  }
+  navigateByRule(getUserIdByToken(token), currentUrl)
 }
 
 export function getElementFromUrl(url: string, key: string) {
