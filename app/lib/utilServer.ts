@@ -19,7 +19,10 @@ async function isLogged() {
 }
 
 export async function navigateToken(currentUrl: UrlType) {
-  if (!(await isLogged())) return
+  if (!(await isLogged())) {
+    if ([`store`, `kitchen`, `admin`].includes(currentUrl)) return navigate(`/`, currentUrl)
+    return
+  }
 
   // login
   const token = await getTokenFromCookies()
