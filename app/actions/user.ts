@@ -2,7 +2,7 @@
 
 import { genToken, hash } from "@/db/crypt"
 import { users } from "@/db/db"
-import { getTokenAndRule } from "@/db/fns"
+import { getTokenAndRule, getUserFromCookies } from "../lib/utilServer"
 
 export async function token(data: TokenProps): Promise<{ message?: string; rule?: number; token?: string }> {
   if (data.name.length < 4 || data.password.length < 4) return { message: `Złe dane` }
@@ -32,6 +32,21 @@ export async function register(data: RegisterProps) {
     email: data.email,
     token: genToken(),
     rule: 1,
-    cart: [],
+    cart: {},
+    items: {},
   })
+}
+
+export async function addToCart(id: number) {
+  const user = await getUserFromCookies()
+  if (!user) return { message: `Nie ma takiego użytkownika!` }
+
+  const cart = user.cart
+
+  if (!cart[id]) cart[id] = 1
+  else cart[id]++
+
+  users.createById(user.id, { ...user, cart })
+
+  console.log(user.cart)
 }

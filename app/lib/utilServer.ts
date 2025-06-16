@@ -1,8 +1,8 @@
 import { users } from "@/db/db"
 import { cookies } from "next/headers"
-import { CHARSET, TOKEN_LENGTH } from "./consts"
-import { getUserIdByToken } from "@/db/fns"
+import { TOKEN_LENGTH } from "./consts"
 import { navigate, navigateByRule } from "./util"
+import { compare, genToken } from "@/db/crypt"
 
 async function getTokenFromCookies() {
   const cookieStore = await cookies()
@@ -40,4 +40,20 @@ export function genId(arr: Obj<any>[]) {
   let id = Math.floor(Math.random() * MAX_PRODUCT_ID)
   for (const e of arr) if (e.id === id) return genId(arr)
   return id
+}
+
+export function getUserIdByToken(token: string) {
+  return users.get(`token`, token)?.rule || 0
+}
+
+export function getTokenAndRule(name: string, password: string) {
+  const user = users.get(`name`, name)
+  if (!user) return
+  if (compare(password, user.passwordHash)) {
+    user.token = genToken()
+
+    users.createById(user.id, user)
+
+    return { rule: user.rule, token: user.token }
+  }
 }

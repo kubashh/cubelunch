@@ -9,7 +9,8 @@ type User = {
   email: string
   token: string
   rule: number
-  cart: string[]
+  cart: { [key: number]: number }
+  items: { [key: number]: number }
 }
 
 type Product = {
@@ -43,13 +44,15 @@ type LRFormProps = {
 }
 
 type HeaderProps = {
+  store?: boolean
+  cart?: boolean
   logout?: boolean
   menu?: boolean
 }
 
 type HeaderLinkProps = {
   label: string
-  url: string
+  url: UrlType
 }
 
 type ImageGrabberCbType = (data: string) => void
@@ -62,6 +65,6 @@ type ImageGrabberProps = {
 
 type CookieType = `token`
 
-type UrlType = `/` | `login` | `register` | `store` | `kitchen` | `admin`
+type UrlType = `/` | `login` | `register` | `store` | `cart` | `kitchen` | `admin`
 
 type Obj<T> = { [key: string]: T }

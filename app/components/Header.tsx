@@ -10,13 +10,15 @@ function HeaderLink({ label, url }: HeaderLinkProps) {
   )
 }
 
-export default function Header({ logout, menu }: HeaderProps) {
+export default function Header({ store, cart, logout, menu }: HeaderProps) {
   return (
     <header className="w-screen h-10">
       <Logo />
 
       {logout && <Logout />}
       {menu && <HeaderLink url="/" label="Menu" />}
+      {cart && <HeaderLink url="cart" label="Koszyk" />}
+      {store && <HeaderLink url="store" label="Sklep" />}
     </header>
   )
 }
