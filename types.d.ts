@@ -57,6 +57,7 @@ type ImageGrabberCbType = (data: string) => void
 type ImageGrabberProps = {
   src: string
   cb: ImageGrabberCbType
+  id: number
 }
 
 type CookieType = `token`

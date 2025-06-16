@@ -3,14 +3,17 @@
 import NextImage from "next/image"
 import { useRefresh } from "../lib/hooks"
 
-export default function ImageGrabber({ src, cb }: ImageGrabberProps) {
+export default function ImageGrabber({ src, cb, id }: ImageGrabberProps) {
   const refresh = useRefresh()
   return (
     <div className="flex">
-      <NextImage className="mr-2" width="40" height="40" src={src} alt="obraz" />
+      <label htmlFor={String(id)} className="mr-2 border-1 border-zinc-700 cursor-pointer">
+        <NextImage width="40" height="40" src={src} alt="obraz" />
+      </label>
       <input
         type="file"
-        className="cursor-pointer"
+        id={String(id)}
+        className="hidden"
         onChange={({ target }) => {
           if (!target.files) return
           configureImage(target.files[0], cb)

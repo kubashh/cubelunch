@@ -5,7 +5,7 @@ import { getProducts } from "@/app/actions/getAction"
 
 function Product({ name, cost, img }: Product) {
   return (
-    <div className="w-54 p-2 rounded-2xl bg-zinc-900">
+    <div className="w-54 p-2 rounded-xs bg-zinc-900">
       <span>{name}</span>
       <span className="float-right">{cost} </span>
       <Image priority={true} width="200" height="200" alt="" src={img} />

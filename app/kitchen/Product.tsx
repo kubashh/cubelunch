@@ -1,39 +1,44 @@
 "use client"
 
-import { deleteProduct, editProduct } from "../actions/products"
-import ImageGrabber from "./ImageGrabber"
 import { useState } from "react"
+import ImageGrabber from "./ImageGrabber"
+import { deleteProduct, editProduct } from "../actions/products"
 
 const editProductAction = (oldData: Product) => async (formData: FormData) => {
   const cost = Number(formData.get(`cost`) as string).toFixed(2)
 
   if (!Number(cost)) return alert(`Zła cena!`)
 
-  // TODO check
+  let isChanged = false
   for (const [key, val] of Object.entries(oldData))
-    if (val === formData.get(key)) return alert(`Nic nie zostało zmienione`)
+    if (val !== formData.get(key)) {
+      isChanged = true
+      break
+    }
+
+  if (!isChanged) return alert(`Nic nie zostało zmienione`)
 
   const product = {
     id: oldData.id,
     name: formData.get(`name`) as string,
-    cost: Number(formData.get(`cost`) as string).toFixed(2),
+    cost,
     img: oldData.img || `/images/defaultImage.png`,
   }
   await editProduct(product)
 
-  // location.reload()
+  location.reload()
 }
 
-export default function Product({ name, cost, img, id }: Product) {
-  const [src, setSrc] = useState(img)
+export default function Product(p: Product) {
+  const [src, setSrc] = useState(p.img)
   return (
     <form
       className="mb-[4px] border-t-4 border-zinc-900 p-2 grid grid-cols-5"
-      action={editProductAction({ id, name, cost, img: src })}
+      action={editProductAction({ ...p, img: src })}
     >
-      <input className="mr-2" name="name" defaultValue={name} />
-      <input className="mr-2" name="cost" defaultValue={cost} />
-      <ImageGrabber src={src} cb={setSrc} />
+      <input className="mr-2" name="name" defaultValue={p.name} />
+      <input className="mr-2" name="cost" defaultValue={p.cost} />
+      <ImageGrabber src={src} cb={setSrc} id={p.id} />
       <button type="submit" className="cursor-pointer">
         Zapisz
       </button>
@@ -42,7 +47,7 @@ export default function Product({ name, cost, img, id }: Product) {
         onClick={async (e: React.MouseEvent<HTMLButtonElement>) => {
           e.preventDefault()
 
-          await deleteProduct(id)
+          await deleteProduct(p.id)
           location.reload()
         }}
         className="cursor-pointer"

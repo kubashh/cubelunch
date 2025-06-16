@@ -35,10 +35,6 @@ export function getElementFromUrl(url: string, key: string) {
   return Object.fromEntries(new URL(url).searchParams.entries())[key]
 }
 
-export function randChar() {
-  return CHARSET.at(Math.floor(Math.random() * CHARSET.length))
-}
-
 const MAX_PRODUCT_ID = 2 ** 52
 export function genId(arr: Obj<any>[]) {
   let id = Math.floor(Math.random() * MAX_PRODUCT_ID)

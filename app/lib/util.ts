@@ -1,5 +1,11 @@
 import { redirect } from "next/navigation"
-import { CODE_ADMIN, CODE_COOK, CODE_USER } from "./consts"
+import { CHARSET, CODE_ADMIN, CODE_COOK, CODE_USER } from "./consts"
+
+export function randChar(n = 1) {
+  let str = ``
+  for (let i = 0; i < n; i++) str += CHARSET.at(Math.floor(Math.random() * CHARSET.length))
+  return str
+}
 
 export function navigate(url: UrlType, curentUrl: UrlType) {
   if (curentUrl !== url) redirect(url)
