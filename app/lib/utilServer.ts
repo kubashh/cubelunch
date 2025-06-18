@@ -1,4 +1,5 @@
-import { users } from "@/db/db"
+import { redirect } from "next/navigation"
+import { products, users } from "@/db/db"
 import { cookies } from "next/headers"
 import { TOKEN_LENGTH } from "./consts"
 import { navigate, navigateByRule } from "./util"
@@ -12,6 +13,13 @@ async function getTokenFromCookies() {
 export async function getUserFromCookies() {
   const token = await getTokenFromCookies()
   return users.get(`token`, token)
+}
+
+export async function getUserFromCookiesNavigate(url: UrlType) {
+  const token = await getTokenFromCookies()
+  const user = users.get(`token`, token)
+  if (!user) redirect(`login`)
+  return user
 }
 
 async function isLogged() {
@@ -56,4 +64,13 @@ export function getTokenAndRule(name: string, password: string) {
 
     return { rule: user.rule, token: user.token }
   }
+}
+
+export function getCartProductsFromUser(user: User) {
+  const arr: [Product, number][] = []
+  for (const i in user.cart) {
+    const p = products.getById(Number(i))
+    if (p) arr.push([p, user.cart[i]])
+  }
+  return arr
 }
