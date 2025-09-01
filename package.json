@@ -2,8 +2,8 @@
   "version": "0.7.0",
   "private": true,
   "scripts": {
-    "dev": "clear && next dev --turbopack",
-    "build": "next build",
+    "dev": "clear && bun --bun run next dev --turbopack",
+    "build": "next build --turbopack",
     "start": "next start"
   },
   "dependencies": {
@@ -13,12 +13,12 @@
     "react-dom": "19.1.0"
   },
   "devDependencies": {
-    "typescript": "^5",
-    "@types/node": "^20",
+    "@tailwindcss/postcss": "^4",
+    "@types/bun": "^1.2.21",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "@tailwindcss/postcss": "^4",
-    "tailwindcss": "^4"
+    "tailwindcss": "^4",
+    "typescript": "^5"
   },
   "prettier": {
     "semi": false,

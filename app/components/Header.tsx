@@ -1,6 +1,6 @@
 import Link from "next/link"
-import Logout from "./Logout"
 import Logo from "./Logo"
+import Logout from "./Logout"
 
 function HeaderLink({ label, url }: HeaderLinkProps) {
   return (

@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
 :root {
-  --cubeLunchLogo: url("/images/cubeLunchLogo.png");
+  --cubeLunchLogo: url("/cubeLunchLogo.png");
   --logoBlue: #454585;
 }

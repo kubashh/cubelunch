@@ -1,6 +1,6 @@
 import Link from "next/link"
 import Header from "./components/Header"
-import { navigateToken } from "./lib/utilServer"
+// import { navigateToken } from "./lib/utilServer"
 
 function HomeLink({ url, label }: HeaderLinkProps) {
   return (
@@ -11,7 +11,7 @@ function HomeLink({ url, label }: HeaderLinkProps) {
 }
 
 export default async function Home() {
-  await navigateToken(`/`)
+  // await navigateToken(`/`)
 
   return (
     <>

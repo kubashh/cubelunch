@@ -1,18 +1,3 @@
-// export async function post(url: string, cb: (data: any) => void, data: any) {
-//   const response = await fetch(`api/${url}`, {
-//     method: `POST`,
-//     headers: {
-//       Accept: "application/json",
-//       "Content-Type": "application/json",
-//     },
-//     body: JSON.stringify(data),
-//   })
-
-//   if (response.ok) {
-//     cb(await response.json())
-//   } else throw Error(response)
-// }
-
 function getExpires(days: number) {
   const date = new Date()
   date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000)

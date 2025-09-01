@@ -1,13 +1,17 @@
-import { existsSync, readFileSync, writeFileSync } from "fs"
 import { genId } from "@/app/lib/utilServer"
 
 class ArrDB<T extends { id: number }> {
-  arr: T[]
+  arr: T[] = []
   path: string
   constructor(fileName: string) {
     this.path = `db/data/${fileName}.json`
-    if (existsSync(this.path)) {
-      const buf = String(readFileSync(this.path))
+    this.setUp()
+  }
+
+  async setUp() {
+    const file = Bun.file(this.path)
+    if (await file.exists()) {
+      const buf = await file.text()
       this.arr = JSON.parse(buf)
     } else this.arr = []
   }
@@ -54,7 +58,5 @@ export const users = new ArrDB<User>(`users`)
 export const products = new ArrDB<Product>(`products`)
 
 function writeJsonFile(path: string, content: any) {
-  console.time(`writeFile`)
-  writeFileSync(path, JSON.stringify(content))
-  console.timeEnd(`writeFile`)
+  Bun.write(path, JSON.stringify(content))
 }

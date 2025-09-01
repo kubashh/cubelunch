@@ -4,7 +4,9 @@ import { genToken, hash } from "@/db/crypt"
 import { users } from "@/db/db"
 import { getTokenAndRule, getUserFromCookies } from "../lib/utilServer"
 
-export async function token(data: TokenProps): Promise<{ message?: string; rule?: number; token?: string }> {
+export async function token(
+  data: TokenProps
+): Promise<{ message?: string; rule?: number; token?: string }> {
   if (data.name.length < 4 || data.password.length < 4) return { message: `Złe dane` }
 
   const res = getTokenAndRule(data.name, data.password)
@@ -28,9 +30,9 @@ export async function register(data: RegisterProps) {
   users.create({
     id: 0,
     name: data.name,
-    passwordHash: hash(data.password),
+    passwordHash: await hash(data.password),
     email: data.email,
-    token: genToken(),
+    token: await genToken(),
     rule: 1,
     cart: {},
     items: {},

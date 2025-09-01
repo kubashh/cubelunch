@@ -14,7 +14,6 @@ export default function Product({ name, cost, img, id }: Product) {
         type="button"
         onClick={async () => {
           const ret = await addToCart(id)
-
           if (ret?.message) alert(ret.message)
         }}
       >

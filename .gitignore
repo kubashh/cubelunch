@@ -6,4 +6,4 @@
 next-env.d.ts
 
 # secret
-.env
+.env.json

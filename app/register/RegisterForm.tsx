@@ -1,8 +1,8 @@
 "use client"
 
-import { register } from "../actions/user"
-import LRForm from "../components/LRForm"
 import { redirect } from "next/navigation"
+import LRForm from "../components/LRForm"
+import { register } from "../actions/user"
 
 async function registerAction(formData: FormData) {
   const data = {
@@ -13,7 +13,7 @@ async function registerAction(formData: FormData) {
 
   const res = await register(data)
 
-  if (res) return alert(res.message)
+  if (res) return alert(res)
 
   redirect(`login`)
 }
