@@ -5,7 +5,7 @@ import { TOKEN_LENGTH } from "./consts"
 import { navigate, navigateByRule } from "./util"
 import { compare, genToken } from "@/db/crypt"
 
-async function getTokenFromCookies() {
+export async function getTokenFromCookies() {
   const cookieStore = await cookies()
   return cookieStore.get(`token`)?.value
 }
@@ -22,7 +22,7 @@ export async function getUserFromCookiesNavigate(url: UrlType) {
   return user
 }
 
-async function isLogged() {
+export async function isLogged() {
   return !!(await getUserFromCookies())
 }
 

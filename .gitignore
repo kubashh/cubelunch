@@ -3,13 +3,7 @@
 
 # next.js
 /.next
-/out
-
-# production
-/build
+next-env.d.ts
 
 # secret
 .env
-
-# typescript
-next-env.d.ts
