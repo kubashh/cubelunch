@@ -1,8 +1,7 @@
 "use server"
 
-import { genToken, hash } from "@/db/crypt"
 import { users } from "@/db/db"
-import { getTokenAndRule, getUserFromCookies } from "../lib/utilServer"
+import { genToken, getTokenAndRule, getUserFromCookies } from "../lib/utilServer"
 
 export async function token(
   data: TokenProps
@@ -30,9 +29,9 @@ export async function register(data: RegisterProps) {
   users.create({
     id: 0,
     name: data.name,
-    passwordHash: await hash(data.password),
+    passwordHash: await Bun.password.hash(data.password),
     email: data.email,
-    token: await genToken(),
+    token: genToken(),
     rule: 1,
     cart: {},
     items: {},

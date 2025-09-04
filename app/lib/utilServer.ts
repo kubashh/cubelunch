@@ -2,8 +2,7 @@ import { redirect } from "next/navigation"
 import { products, users } from "@/db/db"
 import { cookies } from "next/headers"
 import { TOKEN_LENGTH } from "./consts"
-import { navigate, navigateByRule } from "./util"
-import { compare, genToken } from "@/db/crypt"
+import { navigate, navigateByRule, randChar } from "./util"
 
 export async function getTokenFromCookies() {
   const cookieStore = await cookies()
@@ -57,7 +56,7 @@ export function getUserIdByToken(token: string) {
 export function getTokenAndRule(name: string, password: string) {
   const user = users.get(`name`, name)
   if (!user) return
-  if (compare(password, user.passwordHash)) {
+  if (Bun.password.verifySync(password, user.passwordHash)) {
     user.token = genToken()
 
     users.createById(user.id, user)
@@ -73,4 +72,8 @@ export function getCartProductsFromUser(user: User) {
     if (p) arr.push([p, user.cart[i]])
   }
   return arr
+}
+
+export function genToken() {
+  return randChar(TOKEN_LENGTH)
 }
