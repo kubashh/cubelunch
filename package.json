@@ -2,7 +2,7 @@
   "version": "0.7.1",
   "private": true,
   "scripts": {
-    "dev": "clear && bun --bun run next dev --turbopack",
+    "dev": "clear && bun run next dev --turbopack",
     "build": "next build --turbopack",
     "start": "next start"
   },

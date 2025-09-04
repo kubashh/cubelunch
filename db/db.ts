@@ -1,7 +1,7 @@
 import { genId } from "@/app/lib/utilServer"
 
 class ArrDB<T extends { id: number }> {
-  arr: T[] = []
+  private arr: T[] = []
   private path: string
   constructor(fileName: string) {
     this.path = `db/data/${fileName}.json`

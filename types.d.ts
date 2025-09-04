@@ -58,8 +58,7 @@ type HeaderLinkProps = {
 type ImageGrabberCbType = (data: string) => void
 
 type ImageGrabberProps = {
-  src: string
-  cb: ImageGrabberCbType
+  src: { value: string }
   id: number
 }
 

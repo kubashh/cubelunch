@@ -1,8 +1,8 @@
 "use client"
 
-import { useState } from "react"
 import ImageGrabber from "./ImageGrabber"
 import { deleteProduct, editProduct } from "../actions/products"
+import { useSignal } from "../lib/signals"
 
 const editProductAction = (oldData: Product) => async (formData: FormData) => {
   const cost = Number(formData.get(`cost`) as string).toFixed(2)
@@ -30,15 +30,15 @@ const editProductAction = (oldData: Product) => async (formData: FormData) => {
 }
 
 export default function Product(p: Product) {
-  const [src, setSrc] = useState(p.img)
+  const src = useSignal(p.img)
   return (
     <form
-      className="mb-[4px] border-t-4 border-zinc-900 p-2 grid grid-cols-5"
-      action={editProductAction({ ...p, img: src })}
+      className="mb-[4px] border-t-3 border-zinc-900 p-2 grid grid-cols-5"
+      action={editProductAction({ ...p, img: src.value })}
     >
       <input className="mr-2" name="name" defaultValue={p.name} />
       <input className="mr-2" name="cost" defaultValue={p.cost} />
-      <ImageGrabber src={src} cb={setSrc} id={p.id} />
+      <ImageGrabber src={src} id={p.id} />
       <button type="submit" className="cursor-pointer">
         Zapisz
       </button>

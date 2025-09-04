@@ -1,14 +1,12 @@
 "use client"
 
 import NextImage from "next/image"
-import { useRefresh } from "../lib/hooks"
 
-export default function ImageGrabber({ src, cb, id }: ImageGrabberProps) {
-  const refresh = useRefresh()
+export default function ImageGrabber({ src, id }: ImageGrabberProps) {
   return (
     <div className="flex">
       <label htmlFor={String(id)} className="mr-2 border-1 border-zinc-700 cursor-pointer">
-        <NextImage width="40" height="40" src={src} alt="obraz" />
+        <NextImage width="40" height="40" src={src.value} alt="obraz" />
       </label>
       <input
         type="file"
@@ -16,8 +14,7 @@ export default function ImageGrabber({ src, cb, id }: ImageGrabberProps) {
         className="hidden"
         onChange={({ target }) => {
           if (!target.files) return
-          configureImage(target.files[0], cb)
-          setTimeout(() => refresh(), 1000)
+          configureImage(target.files[0], src)
         }}
       />
     </div>
@@ -27,13 +24,13 @@ export default function ImageGrabber({ src, cb, id }: ImageGrabberProps) {
 const MAX_CHARS = 98000
 const IMAGE_SIZE = 400
 
-export function configureImage(image: File, cb: ImageGrabberCbType) {
-  imgToSrc(image, (src) => {
-    resizeScrImage(src, (src) => {
-      console.log(`Before: ${src.length}`)
-      optymalizeSrc(src, (src) => {
-        console.log(`After: ${src.length}`)
-        cb(src)
+function configureImage(image: File, src: { value: string }) {
+  imgToSrc(image, (newSrc) => {
+    resizeScrImage(newSrc, (newSrc) => {
+      console.log(`Before: ${newSrc.length}`)
+      optymalizeSrc(newSrc, (newSrc) => {
+        console.log(`After: ${newSrc.length}`)
+        src.value = newSrc
       })
     })
   })

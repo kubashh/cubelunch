@@ -1,3 +1,4 @@
+import NewProduct from "./NewProduct"
 import Product from "./Product"
 import { getProducts } from "@/app/actions/getAction"
 
@@ -14,6 +15,7 @@ export default async function KitchenPage() {
       {products.map((p) => (
         <Product key={p.id} {...p} />
       ))}
+      <NewProduct />
     </>
   )
 }
